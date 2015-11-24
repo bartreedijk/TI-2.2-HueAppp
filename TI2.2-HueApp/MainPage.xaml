@@ -10,7 +10,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />          
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <RelativePanel>
@@ -26,5 +26,22 @@
                        RelativePanel.RightOf="MenuButton"
                        Margin="10,0,0,0" />
         </RelativePanel>
+
+        <ScrollViewer Grid.Row="1">
+            <ListBox SelectionMode="Single" 
+                     Tapped="ListBox_Tapped"
+                     >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding RectFill}" Width="auto" Height="auto" />
+                            <TextBlock Text="{Binding LampName}" FontSize="20" Margin="40,0,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </ScrollViewer>
+
     </Grid>
 </Page>

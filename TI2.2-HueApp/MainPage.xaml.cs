@@ -24,6 +24,7 @@ namespace TI2._2_HueApp
     {
         public MainPage()
         {
+
             this.InitializeComponent();
         }
 
@@ -31,5 +32,12 @@ namespace TI2._2_HueApp
         {
 
         }
+
+        private void ListBox_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+
     }
 }
