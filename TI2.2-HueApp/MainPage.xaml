@@ -8,6 +8,23 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />          
+        </Grid.RowDefinitions>
 
+        <RelativePanel>
+            <Button Name="MenuButton" 
+                    RelativePanel.AlignLeftWithPanel="True"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="28" 
+                    Content="&#xE700;" 
+                    Click="MenuButton_Click" />
+            <TextBlock Name="TitleTextBlock"
+                       Text="LightsOut"
+                       FontSize="28"
+                       RelativePanel.RightOf="MenuButton"
+                       Margin="10,0,0,0" />
+        </RelativePanel>
     </Grid>
 </Page>

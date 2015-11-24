@@ -26,5 +26,10 @@ namespace TI2._2_HueApp
         {
             this.InitializeComponent();
         }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
