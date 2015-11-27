@@ -11,6 +11,7 @@ namespace TI2._2_HueApp
     class Global
     {
         public List<Light> Lights { get; set; }
+        public static Connector.HueAPIConnector Connector { get; private set; }
 
         public Global()
         {
@@ -19,9 +20,9 @@ namespace TI2._2_HueApp
 
         private async void InitializeConnection()
         {
-            Connector.HueAPIConnector connector = new Connector.HueAPIConnector();
-            await connector.Register();
-            string json = await connector.RetrieveLights();
+            Connector = new Connector.HueAPIConnector();
+            await Connector.Register();
+            string json = await Connector.RetrieveLights();
             Lights = JsonConversie.convertJsonToLights(json);
             System.Diagnostics.Debug.WriteLine(Lights.ToString());
         }

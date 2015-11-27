@@ -55,7 +55,7 @@ namespace TI2._2_HueApp.Connector
             }
         }
 
-        private async Task<string> HttpPut(string relativeUri, string json)
+        public async Task<string> HttpPut(string relativeUri, string json)
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(5000);
@@ -141,11 +141,6 @@ namespace TI2._2_HueApp.Connector
             JsonObject outputSuccessObject = successObject.GetNamedObject("success");
             string username = outputSuccessObject.GetNamedString("username", "");
             this.Username = username;
-        }
-
-        public void SetLight()
-        {
-
         }
 
     }
