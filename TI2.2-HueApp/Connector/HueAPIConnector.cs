@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Data.Json;
 using Windows.Web.Http;
 
 namespace TI2._2_HueApp.Connector
@@ -116,7 +117,7 @@ namespace TI2._2_HueApp.Connector
         public void RetrieveSettings()
         {
             IP = "169.254.80.80";
-            Port = 8000;
+            Port = 80;
         }
 
         public async Task<string> RetrieveLights()
@@ -129,9 +130,17 @@ namespace TI2._2_HueApp.Connector
             return await HttpGet($"lights/{lightIndex}/");
         }
 
-        public void Register()
+        public async Task Register()
         {
-
+            //Register user
+            
+            string json = await HttpPost(("{\"devicetype\":\"mobileHueApp#WinPhoneBart\"}"));
+            JsonArray tempArray;
+            bool parseOK = JsonArray.TryParse(json, out tempArray);            
+            JsonObject successObject = tempArray[0].GetObject();
+            JsonObject outputSuccessObject = successObject.GetNamedObject("success");
+            string username = outputSuccessObject.GetNamedString("username", "");
+            this.Username = username;
         }
 
         public void SetLight()
