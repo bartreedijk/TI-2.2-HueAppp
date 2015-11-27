@@ -28,8 +28,7 @@
         </RelativePanel>
 
         <ScrollViewer Grid.Row="1">
-            <ListBox Tapped="ListBox_Tapped"
-                     >
+            <ListBox SelectionMode="Single" SelectionChanged="ListBox_SelectionChanged">
                 <!--<ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
