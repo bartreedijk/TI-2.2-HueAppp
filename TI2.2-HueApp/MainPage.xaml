@@ -5,15 +5,28 @@
     xmlns:local="using:TI2._2_HueApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TI2._2_HueApp.Enitity"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <DataTemplate x:DataType="data:Light" x:Key="LampListDataTemplate">
+            <StackPanel Orientation="Horizontal" Height="80" Width="auto">
+                <Rectangle Margin="0,10,0,10" Width="60" Height="60">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{x:Bind RGBColor}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Text="{x:Bind Name}" FontSize="24" Margin="20,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <RelativePanel>
+        <!-- Menu Panel-->
+            <RelativePanel>
             <Button Name="MenuButton" 
                     RelativePanel.AlignLeftWithPanel="True"
                     FontFamily="Segoe MDL2 Assets"
@@ -26,34 +39,12 @@
                        RelativePanel.RightOf="MenuButton"
                        Margin="10,0,0,0" />
         </RelativePanel>
-
-        <ScrollViewer Grid.Row="1">
-            <ListBox Tapped="ListBox_Tapped"
-                     >
-                <!--<ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Fill="{Binding RectFill}" Width="auto" Height="auto" />
-                            <TextBlock Text="{Binding LampName}" FontSize="20" Margin="40,0,0,0"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>-->
-                <ListBoxItem Padding="10,0,0,0" Margin="0,10,0,0">
-                    <StackPanel Orientation="Horizontal" Height="80">
-                        <Rectangle Fill="LightGray" Margin="0,10,0,10" Width="60"/>
-                        <TextBlock Text="Hue lamp 1" FontSize="24" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Padding="10,0,0,0" Margin="0,10,0,0">
-                    <StackPanel Orientation="Horizontal" Height="80">
-                        <Rectangle Fill="LightGray" Margin="0,10,0,10" Width="60"/>
-                        <TextBlock Text="Hue lamp 1" FontSize="24" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListBoxItem>
-                
-            </ListBox>
-
-        </ScrollViewer>
-
+        <!-- List Panel-->
+        <ListView ItemsSource="{x:Bind Lights}" 
+                  IsItemClickEnabled="True" 
+                  ItemClick="GridView_ItemClick" 
+                  Margin="0,50,0,18"
+                  ItemTemplate="{StaticResource LampListDataTemplate}">
+        </ListView>
     </Grid>
 </Page>

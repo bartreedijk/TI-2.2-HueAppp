@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TI2._2_HueApp.lib;
+using Windows.UI;
 
 namespace TI2._2_HueApp.Enitity
 {
-    class Light
+    public class Light
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -14,6 +16,8 @@ namespace TI2._2_HueApp.Enitity
         public int Hue { get; set; }
         public int Saturation { get; set; }
         public int Brightness { get; set; }
+        public Color RGBColor { get; set; }
+
         public Light(int id, string name, bool state, int hue, int sat, int bri)
         {
             ID = id;
@@ -22,6 +26,7 @@ namespace TI2._2_HueApp.Enitity
             Hue = hue;
             Saturation = sat;
             Brightness = bri;
+            RGBColor = ColorUtil.getColor(this);
         }
 
         public string getStateToJson()
