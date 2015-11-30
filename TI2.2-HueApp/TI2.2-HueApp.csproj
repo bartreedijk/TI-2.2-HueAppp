@@ -99,10 +99,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Connector\HueAPIConnector.cs" />
+    <Compile Include="lib\HueAPIConnector.cs" />
     <Compile Include="Enitity\Light.cs" />
-    <Compile Include="Global.cs" />
-    <Compile Include="lib\JsonConversie.cs" />
+    <Compile Include="lib\ColorUtil.cs" />
+    <Compile Include="lib\JsonUtil.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

@@ -3,19 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+<<<<<<< HEAD
+using TI2._2_HueApp.Connector;
+=======
 using TI2._2_HueApp.lib;
 using Windows.UI;
-using TI2._2_HueApp.Connector;
+>>>>>>> 0b101a872838971694db185dff2ce6623f4f3112
 
 namespace TI2._2_HueApp.Enitity
 {
     public class Light
     {
-	#region Properties region
-
+<<<<<<< HEAD
+        #region Properties region
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public bool State { get; set; }
+        public int Hue { get; set; }
+        public int Saturation { get; set; }
+        public int Brightness { get; set; }
+        #endregion
+=======
         private double _hue, _sat, _bri;
-
-	public Color RGBColor { get; set; }
 
         public int ID { get; set; }
         public string Name { get; set; }
@@ -47,10 +56,9 @@ namespace TI2._2_HueApp.Enitity
                 CalculateColor();
             }
         }
+        public Color RGBColor { get; set; }
 
-	#endregion
-
-        
+>>>>>>> 0b101a872838971694db185dff2ce6623f4f3112
         public Light(int id, string name, bool state, int hue, int sat, int bri)
         {
             ID = id;
@@ -68,32 +76,38 @@ namespace TI2._2_HueApp.Enitity
         }
 
 
-        #region GetJson region
+        #region privateGetJson region
 
-        public string getStateToJson()
+        private string getStateToJson()
         {
             return "{\"on\"" + (State ? "true" : "false") + "}";
         }
+<<<<<<< HEAD
+        private string getSatToJson()
+=======
 
         public string getHueToJson()
+>>>>>>> 0b101a872838971694db185dff2ce6623f4f3112
         {
             int value = (int)((Hue * 65535.0f) / 360);
             return "{\"sat\"" + value.ToString() + "}";
         }
+<<<<<<< HEAD
+        private string getHueToJson()
+=======
 
         public string getSatToJson()
+>>>>>>> 0b101a872838971694db185dff2ce6623f4f3112
         {
             int value = (int)(Saturation * 255.0f);
             return "{\"hue\"" + value.ToString() + "}";
         }
-
-        public string getBriToJson()
+        private string getBriToJson()
         {
             int value = (int)(Brightness * 255.0f);
             return "{\"bri\"" + value.ToString() + "}";
         }
-
-        public string getToJson()
+        private string getToJson()
         {
             int hue = (int)((Hue * 65535.0f) / 360);
             int sat = (int)(Saturation * 255.0f);

@@ -33,7 +33,6 @@ namespace TI2._2_HueApp
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
-            new Global();
             this.Suspending += OnSuspending;
         }
 
