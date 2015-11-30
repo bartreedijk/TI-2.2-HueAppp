@@ -102,7 +102,7 @@ namespace TI2._2_HueApp.Enitity
         }
 
         #endregion
-
+        /*
         #region SendJsonToBridge region
 
         public async Task SendStateToBridge(string relativeURIOfLight)
@@ -129,7 +129,8 @@ namespace TI2._2_HueApp.Enitity
         {
             await Global.Connector.HttpPut(relativeURIOfLight, getToJson());
         }
-
+        
         #endregion
+    */
     }
 }

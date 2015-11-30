@@ -69,7 +69,7 @@
                   VerticalAlignment="Stretch"
                   SelectionChanged="ListBox_Selection"
                   Margin="0,42,0,0"
-                  ItemTemplate="{StaticResource LampListDataTemplate}">
+                  ItemTemplate="{StaticResource LampListDataTemplate}" >
         </ListBox>
 
         </ScrollViewer>

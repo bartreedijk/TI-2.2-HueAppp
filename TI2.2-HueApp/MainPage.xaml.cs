@@ -56,11 +56,13 @@ namespace TI2._2_HueApp
 
             if(grid.Height > 90)
             {
+                lampListView.SelectedIndex = -1;
                 grid.Height = 80;
             }
             else
             {
                 grid.Height = 250;
+                lampListView.SelectedIndex = -1;
             }
            
         }
@@ -118,6 +120,7 @@ namespace TI2._2_HueApp
         {
 
         }
+
 
         /*private void Hue_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
