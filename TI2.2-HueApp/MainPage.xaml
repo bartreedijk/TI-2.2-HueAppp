@@ -9,42 +9,68 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:DataType="data:Light" x:Key="LampListDataTemplate">
-            <StackPanel Orientation="Horizontal" Height="80" Width="auto">
-                <Rectangle Margin="0,10,0,10" Width="60" Height="60">
+            <Grid Name="ItemGrid" Height="80" Width="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Name="ColorSampleBox" Grid.Row="0" Grid.Column="0" Margin="0,10,0,10" Width="60" Height="60">
                     <Rectangle.Fill>
                         <SolidColorBrush Color="{x:Bind RGBColor}"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <TextBlock Text="{x:Bind Name}" FontSize="24" Margin="20,0,0,0" VerticalAlignment="Center"/>
-            </StackPanel>
+                
+                <TextBlock Name="NameBox" Grid.Row="0" Grid.Column="1" Text="{x:Bind Name}" FontSize="24" Margin="20,0,20,0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Hue" FontSize="16" Margin="15,0,15,0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Saturation" FontSize="16" Margin="15,0,15,0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Brightness" FontSize="16" Margin="15,0,15,0" VerticalAlignment="Center"/>
+
+                <ToggleSwitch Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="30,0,15,0" IsOn="{x:Bind State}" />
+                
+                <Slider Name="HueSlider" Grid.Row="2" Grid.Column="1" Value="{x:Bind Hue}" Minimum="0" Maximum="360" />
+                <Slider Name="SatSlider" Grid.Row="3" Grid.Column="1" Value="{x:Bind Saturation}" Minimum="0" Maximum="100" />
+                <Slider Name="BriSlider" Grid.Row="4" Grid.Column="1" Value="{x:Bind Brightness}" Minimum="0" Maximum="100" />
+            </Grid>
         </DataTemplate>
     </Page.Resources>
-    
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!-- Menu Panel-->
-            <RelativePanel>
+        <RelativePanel>
             <Button Name="MenuButton" 
                     RelativePanel.AlignLeftWithPanel="True"
                     FontFamily="Segoe MDL2 Assets"
-                    FontSize="36" 
-                    Content="&#xE700;" 
-                    Click="MenuButton_Click" />
+                    FontSize="28" 
+                    Content="&#xE09E;" 
+                    Click="MenuButton_Click" Background="#33000000" />
             <TextBlock Name="TitleTextBlock"
                        Text="LightsOut"
-                       FontSize="36"
+                       FontSize="28"
                        RelativePanel.RightOf="MenuButton"
-                       Margin="10,0,0,0" />
+                       Margin="73,0,-73,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </RelativePanel>
-        <!-- List Panel-->
-        <ListView ItemsSource="{x:Bind Lights}" 
-                  IsItemClickEnabled="True" 
-                  ItemClick="GridView_ItemClick" 
-                  Margin="0,50,0,18"
+        <ScrollViewer VerticalScrollMode="Auto" Height="Auto" Grid.RowSpan="2">
+        <!-- List Panel -->
+        <ListBox ItemsSource="{x:Bind Lights}"
+                  Name="lampListView"
+                  VerticalAlignment="Stretch"
+                  SelectionChanged="ListBox_Selection"
+                  Margin="0,42,0,0"
                   ItemTemplate="{StaticResource LampListDataTemplate}">
-        </ListView>
+        </ListBox>
+        </ScrollViewer>
+
     </Grid>
 </Page>
