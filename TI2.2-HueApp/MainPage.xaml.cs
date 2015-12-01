@@ -26,30 +26,22 @@ namespace TI2._2_HueApp
     {
         public List<Light> Lights
         {
-            get; private set;
+            get { return Global.Instance.Lights; }
         }
 
         public HueAPIConnector Connector
         {
-            get; private set;
+            get { return Global.Instance.Connector; }
         }
         public MainPage()
         {
-            Lights = new List<Light>();
             double h, s, v;
             ColorUtil.RGBtoHSV(255, 0, 0, out h, out s, out v);
-            InitializeConnection();
-        }
-
-        private async void InitializeConnection()
-        {
-            Connector = new Connector.HueAPIConnector();
-            await Connector.Register();
-            string json = await Connector.RetrieveLights();
-            Lights = JsonUtil.convertJsonToLights(json);
-
+            Global.Instance.InitializeConnection();
             InitializeComponent();
         }
+
+        
 
 
         private void ListBox_Selection(object sender, SelectionChangedEventArgs e)

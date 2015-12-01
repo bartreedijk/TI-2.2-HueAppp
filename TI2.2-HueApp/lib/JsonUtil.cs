@@ -9,7 +9,7 @@ using Windows.Data.Json;
 
 namespace TI2._2_HueApp.lib
 {
-    class JsonUtil
+    public class JsonUtil
     {
 
         public static List<Light> convertJsonToLights(string json)
