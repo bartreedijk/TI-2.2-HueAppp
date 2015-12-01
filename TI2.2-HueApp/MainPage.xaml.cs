@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TI2._2_HueApp.Connector;
 using TI2._2_HueApp.Enitity;
 using TI2._2_HueApp.lib;
 using Windows.Foundation;
@@ -23,7 +24,15 @@ namespace TI2._2_HueApp
    
     public sealed partial class MainPage : Page
     {
-        private List<Light> Lights;
+        public List<Light> Lights
+        {
+            get; private set;
+        }
+
+        public HueAPIConnector Connector
+        {
+            get; private set;
+        }
         public MainPage()
         {
             Lights = new List<Light>();
@@ -32,9 +41,9 @@ namespace TI2._2_HueApp
 
         private async void InitializeConnection()
         {
-            Connector.HueAPIConnector connector = new Connector.HueAPIConnector();
-            await connector.Register();
-            string json = await connector.RetrieveLights();
+            Connector = new Connector.HueAPIConnector();
+            await Connector.Register();
+            string json = await Connector.RetrieveLights();
             Lights = JsonUtil.convertJsonToLights(json);
 
             InitializeComponent();
