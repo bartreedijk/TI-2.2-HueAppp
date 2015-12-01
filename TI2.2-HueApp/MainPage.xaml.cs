@@ -37,7 +37,12 @@ namespace TI2._2_HueApp
         {
             double h, s, v;
             ColorUtil.RGBtoHSV(255, 0, 0, out h, out s, out v);
-            Global.Instance.InitializeConnection();
+            Init();
+        }
+
+        public async void Init()
+        {
+            await Global.Instance.InitializeConnection();
             InitializeComponent();
         }
 

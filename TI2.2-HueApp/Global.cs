@@ -23,7 +23,7 @@ namespace TI2._2_HueApp
             Lights = new List<Light>();
         }
 
-        public async void InitializeConnection()
+        public async Task InitializeConnection()
         {
             Connector = new Connector.HueAPIConnector();
             await Connector.Register();
