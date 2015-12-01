@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Global.cs" />
     <Compile Include="lib\HueAPIConnector.cs" />
     <Compile Include="Enitity\Light.cs" />
     <Compile Include="lib\ColorUtil.cs" />
