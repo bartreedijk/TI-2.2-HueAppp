@@ -124,26 +124,25 @@ namespace TI2._2_HueApp
 
         }
 
-
-        /*private void Hue_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private async void HueSlider_PointerCaptureLost(object sender, PointerRoutedEventArgs e)
         {
-            if (lampListView.SelectedIndex == -1)
-                return;
+            Slider slider = sender as Slider;
+            Light light = slider.DataContext as Light;
+            await Connector.HttpPut("lights\\" + light.ID + "\\State", light.getHueToJson());
+        }
 
-            ListBoxItem currentItem = lampListView.ContainerFromIndex(lampListView.SelectedIndex) as ListBoxItem;
+        private async void SatSlider_PointerCaptureLost(object sender, PointerRoutedEventArgs e)
+        {
+            Slider slider = sender as Slider;
+            Light light = slider.DataContext as Light;
+            await Connector.HttpPut("lights\\" + light.ID + "\\State", light.getSatToJson());
+        }
 
-            if (currentItem == null)
-                return;
-
-            foreach (Light l in Lights)
-            {
-                if (FindDescendantByName<TextBlock>(currentItem, "NameBox").Text == l.Name)
-                {
-                    l.Hue = FindDescendantByName<Slider>(currentItem, "HueSlider").Value;
-                    Bindings.Update();
-                    return;
-                }
-            }
-        }*/
-    }
+        private async void BriSlider_PointerCaptureLost(object sender, PointerRoutedEventArgs e)
+        {
+            Slider slider = sender as Slider;
+            Light light = slider.DataContext as Light;
+            await Connector.HttpPut("lights\\" + light.ID + "\\State", light.getBriToJson());
+        }
+        }
 }

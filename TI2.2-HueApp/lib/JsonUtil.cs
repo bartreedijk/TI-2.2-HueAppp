@@ -57,6 +57,5 @@ namespace TI2._2_HueApp.lib
             return lights;
         }
 
-
     }
 }

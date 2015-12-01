@@ -35,9 +35,9 @@
 
                 <ToggleSwitch Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="30,0,15,0" IsOn="{x:Bind State, Mode=TwoWay}" />
                 
-                <Slider Name="HueSlider" Grid.Row="2" Grid.Column="1" Value="{x:Bind Hue, Mode=TwoWay}" Minimum="0" Maximum="360" />
-                <Slider Name="SatSlider" Grid.Row="3" Grid.Column="1" Value="{x:Bind Saturation, Mode=TwoWay}" Minimum="0" Maximum="254" />
-                <Slider Name="BriSlider" Grid.Row="4" Grid.Column="1" Value="{x:Bind Brightness, Mode=TwoWay}" Minimum="0" Maximum="254" />
+                <Slider Name="HueSlider" Grid.Row="2" Grid.Column="1" Value="{x:Bind Hue, Mode=TwoWay}" Minimum="0" Maximum="360" PointerCaptureLost="HueSlider_PointerCaptureLost"/>
+                <Slider Name="SatSlider" Grid.Row="3" Grid.Column="1" Value="{x:Bind Saturation, Mode=TwoWay}" Minimum="0" Maximum="254" PointerCaptureLost="SatSlider_PointerCaptureLost"/>
+                <Slider Name="BriSlider" Grid.Row="4" Grid.Column="1" Value="{x:Bind Brightness, Mode=TwoWay}" Minimum="0" Maximum="254" PointerCaptureLost="BriSlider_PointerCaptureLost" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
