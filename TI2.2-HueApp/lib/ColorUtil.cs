@@ -13,8 +13,8 @@ namespace TI2._2_HueApp.lib
         public static Color getColor(this Light light)
         {
             double hue = light.Hue;
-            double sat = light.Saturation;
-            double val = light.Brightness;
+            double sat = light.Saturation / 254;
+            double val = light.Brightness / 254;
 
             int r, g, b;
             HsvToRgb(hue, sat, val, out r, out g, out b);

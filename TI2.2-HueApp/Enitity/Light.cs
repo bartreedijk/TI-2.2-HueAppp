@@ -50,7 +50,7 @@ namespace TI2._2_HueApp.Enitity
             get { return _hue; }
             set
             {
-                if (value != this._hue)
+                if (value != _hue)
                 {
                     _hue = value;
                     NotifyPropertyChanged(nameof(_hue));
@@ -62,29 +62,43 @@ namespace TI2._2_HueApp.Enitity
         }
         public double Saturation
         {
-            get { return _sat; }
+            get { return _sat * 254; }
             set
             {
-                if (value != this._sat)
+                if (_sat != 300)
                 {
-                    _sat = value / 100.0;
-                    NotifyPropertyChanged(nameof(_sat));
-                    CalculateColor();
-                    NotifyPropertyChanged(nameof(RGBColor));
+                    if (value != _sat)
+                    {
+                        _sat = value / 254;
+                        NotifyPropertyChanged(nameof(_sat));
+                        CalculateColor();
+                        NotifyPropertyChanged(nameof(RGBColor));
+                    }
+                }
+                else
+                {
+                    _sat = value;
                 }
             }
         }
         public double Brightness
         {
-            get { return _bri; }
+            get { return _bri * 254; }
             set
             {
-                if (value != this._bri)
+                if (_bri != 300)
+                {
+                    if (value != _bri)
+                    {
+                        _bri = value / 254;
+                        NotifyPropertyChanged(nameof(_bri));
+                        CalculateColor();
+                        NotifyPropertyChanged(nameof(RGBColor));
+                    }
+                }
+                else
                 {
                     _bri = value;
-                    NotifyPropertyChanged(nameof(_bri));
-                    CalculateColor();
-                    NotifyPropertyChanged(nameof(RGBColor));
                 }
             }
         }
@@ -97,10 +111,15 @@ namespace TI2._2_HueApp.Enitity
             ID = id;
             Name = name;
             State = state;
+            _sat = 300;
+            _bri = 300;
             Hue = ((double)hue * 360.0f) / 65535.0f;
             Saturation = (double)(sat / 255.0f);
             Brightness = (double)(bri / 255.0f);
-            CalculateColor();
+            
+            Saturation = _sat * 255.0f;
+            Brightness = _bri * 255.0f;
+
         }
 
         private void NotifyPropertyChanged(string propertyName)
@@ -132,21 +151,21 @@ namespace TI2._2_HueApp.Enitity
 
         public string getSatToJson()
         {
-            int value = (int)(Saturation * 255.0f);
+            int value = (int)(Saturation * 255.0f / 254);
             return "{\"sat\"" + value.ToString() + "}";
         }
 
         public string getBriToJson()
         {
-            int value = (int)(Brightness * 255.0f);
+            int value = (int)(Brightness * 255.0f / 254);
             return "{\"bri\"" + value.ToString() + "}";
         }
 
         public string getToJson()
         {
             int hue = (int)((Hue * 65535.0f) / 360);
-            int sat = (int)(Saturation * 255.0f);
-            int bri = (int)(Brightness * 255.0f);
+            int sat = (int)(Saturation * 255.0f / 254);
+            int bri = (int)(Brightness * 255.0f / 254);
             return "{\"on\"" + (State ? "true" : "false") + ", \"hue\"" + hue.ToString() + ",\"sat\"" + sat.ToString() + ",\"bri\"" + bri.ToString() + "}";
         }
 
