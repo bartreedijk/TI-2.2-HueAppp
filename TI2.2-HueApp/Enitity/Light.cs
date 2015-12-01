@@ -122,7 +122,7 @@ namespace TI2._2_HueApp.Enitity
             
             Saturation = _sat * 255.0f;
             Brightness = _bri * 255.0f;
-
+            NotifyPropertyChanged(nameof(State));
         }
 
         private void NotifyPropertyChanged(string propertyName)
@@ -143,33 +143,33 @@ namespace TI2._2_HueApp.Enitity
 
         public string getStateToJson()
         {
-            return "{\"on\"" + (State ? "true" : "false") + "}";
+            return "{\"on\":" + (State ? "true" : "false") + "}";
         }
 
         public string getHueToJson()
         {
             int value = (int)((Hue * 65535.0f) / 360);
-            return "{\"hue\"" + value.ToString() + "}";
+            return "{\"hue\":" + value.ToString() + "}";
         }
 
         public string getSatToJson()
         {
             int value = (int)(GetRealSat() * 255.0f);
-            return "{\"sat\"" + value.ToString() + "}";
+            return "{\"sat\":" + value.ToString() + "}";
         }
 
         public string getBriToJson()
         {
             int value = (int)(GetRealBri() * 255.0f);
-            return "{\"bri\"" + value.ToString() + "}";
+            return "{\"bri\":" + value.ToString() + "}";
         }
 
         public string getToJson()
         {
             int hue = (int)((Hue * 65535.0f) / 360);
             int sat = (int)(GetRealSat() * 255.0f);
-            int bri = (int)(GetRealBri() * 255.0f);
-            return "{\"on\"" + (State ? "true" : "false") + ", \"hue\"" + hue.ToString() + ",\"sat\"" + sat.ToString() + ",\"bri\"" + bri.ToString() + "}";
+            int bri = (int)(GetRealBri() * 255.0f); 
+            return "{\"on\"" + (State ? "true" : "false") + ", \"hue\":" + hue.ToString() + ",\"sat\":" + sat.ToString() + ",\"bri\":" + bri.ToString() + "}";
         }
 
         #endregion

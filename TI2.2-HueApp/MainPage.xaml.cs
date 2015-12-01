@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using TI2._2_HueApp.Connector;
 using TI2._2_HueApp.Enitity;
 using TI2._2_HueApp.lib;
@@ -29,6 +30,8 @@ namespace TI2._2_HueApp
             get { return Global.Instance.Lights; }
         }
 
+        private bool IsLoaded;
+
         public HueAPIConnector Connector
         {
             get { return Global.Instance.Connector; }
@@ -40,12 +43,11 @@ namespace TI2._2_HueApp
             Init();
         }
 
-        public async void Init()
+        private async void Init()
         {
             await Global.Instance.InitializeConnection();
             InitializeComponent();
         }
-
         
 
 
@@ -133,21 +135,43 @@ namespace TI2._2_HueApp
         {
             Slider slider = sender as Slider;
             Light light = slider.DataContext as Light;
-            await Connector.HttpPut("lights\\" + light.ID + "\\State", light.getHueToJson());
+            await Connector.HttpPut("lights\\" + light.ID + "\\state", light.getHueToJson());
         }
 
         private async void SatSlider_PointerCaptureLost(object sender, PointerRoutedEventArgs e)
         {
             Slider slider = sender as Slider;
             Light light = slider.DataContext as Light;
-            await Connector.HttpPut("lights\\" + light.ID + "\\State", light.getSatToJson());
+            await Connector.HttpPut("lights\\" + light.ID + "\\state", light.getSatToJson());
         }
 
         private async void BriSlider_PointerCaptureLost(object sender, PointerRoutedEventArgs e)
         {
             Slider slider = sender as Slider;
             Light light = slider.DataContext as Light;
-            await Connector.HttpPut("lights\\" + light.ID + "\\State", light.getBriToJson());
+            await Connector.HttpPut("lights\\" + light.ID + "\\state", light.getBriToJson());
         }
+
+        private async void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            
+            ToggleSwitch OnOff = sender as ToggleSwitch;
+            Light light = OnOff.DataContext as Light;
+            Light LightOut = Lights.Where(lightInternal => lightInternal.ID == light.ID).FirstOrDefault();
+            if (!IsLoaded)
+                return;
+            light.State = !light.State;
+            await Connector.HttpPut("lights\\" + light.ID + "\\state", light.getStateToJson());
         }
+
+        private void ToggleSwitch_Toggled(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void Page_LayoutUpdated(object sender, object e)
+        {
+            IsLoaded = true;
+        }
+    }
 }

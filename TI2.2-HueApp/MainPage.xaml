@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:TI2._2_HueApp.Enitity"
-    mc:Ignorable="d">
+    mc:Ignorable="d" LayoutUpdated="Page_LayoutUpdated">
     <Page.Resources>
         <DataTemplate x:DataType="data:Light" x:Key="LampListDataTemplate">
             <Grid Name="ItemGrid" Height="80" Width="Auto">
@@ -33,7 +33,7 @@
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Saturation" FontSize="16" Margin="15,0,15,0" VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Brightness" FontSize="16" Margin="15,0,15,0" VerticalAlignment="Center"/>
 
-                <ToggleSwitch Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="30,0,15,0" IsOn="{x:Bind State, Mode=TwoWay}" />
+                <ToggleSwitch Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="30,0,15,0" IsOn="{x:Bind State, Mode=TwoWay}" Toggled="ToggleSwitch_Toggled" />
                 
                 <Slider Name="HueSlider" Grid.Row="2" Grid.Column="1" Value="{x:Bind Hue, Mode=TwoWay}" Minimum="0" Maximum="360" PointerCaptureLost="HueSlider_PointerCaptureLost"/>
                 <Slider Name="SatSlider" Grid.Row="3" Grid.Column="1" Value="{x:Bind Saturation, Mode=TwoWay}" Minimum="0" Maximum="254" PointerCaptureLost="SatSlider_PointerCaptureLost"/>

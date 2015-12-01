@@ -116,7 +116,8 @@ namespace TI2._2_HueApp.Connector
 
         public void RetrieveSettings()
         {
-            IP = "169.254.80.80";
+            //IP = "169.254.80.80";
+            IP = "145.048.205.190";
             Port = 80;
         }
 
