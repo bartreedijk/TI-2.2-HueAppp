@@ -36,6 +36,8 @@ namespace TI2._2_HueApp
         public MainPage()
         {
             Lights = new List<Light>();
+            double h, s, v;
+            ColorUtil.RGBtoHSV(255, 0, 0, out h, out s, out v);
             InitializeConnection();
         }
 
