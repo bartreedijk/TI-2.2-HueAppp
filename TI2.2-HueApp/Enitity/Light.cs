@@ -103,6 +103,9 @@ namespace TI2._2_HueApp.Enitity
             }
         }
 
+        public double GetRealBri() { return Brightness / 254; }
+        public double GetRealSat() { return Saturation / 254; }
+
         #endregion
 
 
@@ -151,21 +154,21 @@ namespace TI2._2_HueApp.Enitity
 
         public string getSatToJson()
         {
-            int value = (int)(Saturation * 255.0f / 254);
+            int value = (int)(GetRealSat() * 255.0f);
             return "{\"sat\"" + value.ToString() + "}";
         }
 
         public string getBriToJson()
         {
-            int value = (int)(Brightness * 255.0f / 254);
+            int value = (int)(GetRealBri() * 255.0f);
             return "{\"bri\"" + value.ToString() + "}";
         }
 
         public string getToJson()
         {
             int hue = (int)((Hue * 65535.0f) / 360);
-            int sat = (int)(Saturation * 255.0f / 254);
-            int bri = (int)(Brightness * 255.0f / 254);
+            int sat = (int)(GetRealSat() * 255.0f);
+            int bri = (int)(GetRealBri() * 255.0f);
             return "{\"on\"" + (State ? "true" : "false") + ", \"hue\"" + hue.ToString() + ",\"sat\"" + sat.ToString() + ",\"bri\"" + bri.ToString() + "}";
         }
 
