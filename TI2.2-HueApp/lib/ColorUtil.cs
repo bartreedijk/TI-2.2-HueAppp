@@ -10,6 +10,7 @@ namespace TI2._2_HueApp.lib
 {
     public static class ColorUtil
     {
+        
         public static Color getColor(this Light light)
         {
             double hue = light.Hue;

@@ -62,14 +62,14 @@ namespace TI2._2_HueApp.Enitity
         }
         public double Saturation
         {
-            get { return _sat * 254; }
+            get { return _sat * 255.0; }
             set
             {
                 if (_sat != 300)
                 {
                     if (value != _sat)
                     {
-                        _sat = value / 254;
+                        _sat = value / 255.0;
                         NotifyPropertyChanged(nameof(_sat));
                         CalculateColor();
                         NotifyPropertyChanged(nameof(RGBColor));
@@ -83,14 +83,14 @@ namespace TI2._2_HueApp.Enitity
         }
         public double Brightness
         {
-            get { return _bri * 254; }
+            get { return _bri * 255.0; }
             set
             {
                 if (_bri != 300)
                 {
                     if (value != _bri)
                     {
-                        _bri = value / 254;
+                        _bri = value / 255.0;
                         NotifyPropertyChanged(nameof(_bri));
                         CalculateColor();
                         NotifyPropertyChanged(nameof(RGBColor));
@@ -103,8 +103,8 @@ namespace TI2._2_HueApp.Enitity
             }
         }
 
-        public double GetRealBri() { return Brightness / 254; }
-        public double GetRealSat() { return Saturation / 254; }
+        public double GetRealBri() { return Brightness / 255.0; }
+        public double GetRealSat() { return Saturation / 255.0; }
 
         #endregion
 
