@@ -3,32 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TI2._2_HueApp.Connector;
 using TI2._2_HueApp.lib;
 using TI2._2_HueApp.Enitity;
 
 namespace TI2._2_HueApp
 {
-    class Global
+    internal class Global
     {
-        public List<Light> Lights { get ; private set; }
+        public List<Light> Lights { get; private set; }
 
-        public Connector.HueAPIConnector Connector { get; private set; }
+        public HueAPIConnector Connector { get; }
 
         private static Global _instance;
 
-        public static Global Instance { get { return _instance ?? (_instance = new Global()); } }
+        public static Global Instance => _instance ?? (_instance = new Global());
 
         private Global()
         {
             Lights = new List<Light>();
+            Connector = new HueAPIConnector();
         }
 
-        public async Task InitializeConnection()
+        public async Task<bool> InitializeConnection()
         {
-            Connector = new Connector.HueAPIConnector();
-            await Connector.Register();
             string json = await Connector.RetrieveLights();
             Lights = JsonUtil.convertJsonToLights(json);
+            return !(json == "" || json == "[]");
         }
 
     }

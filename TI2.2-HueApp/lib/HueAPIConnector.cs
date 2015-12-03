@@ -116,10 +116,10 @@ namespace TI2._2_HueApp.Connector
 
         public void RetrieveSettings()
         {
-            IP = "169.254.80.80"; // emulator
+            //IP = "169.254.80.80"; // emulator
             //IP = "145.48.205.190"; // echte bridge van school
             //IP = "127.0.0.1"; // local device
-            //IP = "192.168.50.19";
+            //IP = "145.102.68.124";
             Port = 80;
         }
 
@@ -133,11 +133,19 @@ namespace TI2._2_HueApp.Connector
             return await HttpGet($"lights/{lightIndex}/");
         }
 
-        public async Task<bool> Register()
+        public async Task<string> Register()
+        {
+            return await Register("mobileHueApp#WinPhoneBart");
+        }
+
+        public async Task<string> Register(string usernameIn)
         {
             //Register user
-            
-            string json = await HttpPost(("{\"devicetype\":\"mobileHueApp#WinPhoneBart\"}"));
+            string jsonpart1 = "{\"devicetype\":\"";
+            // string jsonpart2 = "mobileHueApp#WinPhoneBart";
+            string jsonpart2 = usernameIn;
+            string jsonpart3 = "\"}";
+            string json = await HttpPost(jsonpart1 + jsonpart2 + jsonpart3);
             JsonArray tempArray;
             bool parseOK = JsonArray.TryParse(json, out tempArray);
             if (parseOK)
@@ -146,8 +154,9 @@ namespace TI2._2_HueApp.Connector
                 JsonObject outputSuccessObject = successObject.GetNamedObject("success");
                 string username = outputSuccessObject.GetNamedString("username", "");
                 this.Username = username;
+                return Username;
             }
-            return Username != "" && parseOK;
+            return "";
         }
 
     }

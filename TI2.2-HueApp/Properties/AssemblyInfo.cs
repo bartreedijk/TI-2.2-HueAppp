@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TI2.2-HueApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("LightsOut")]
+[assembly: AssemblyDescription("App for controlling Philips Hue")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TI2.2-HueApp")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2015 Richard Danen & Bart Reedijk")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

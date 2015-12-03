@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="TI2._2_HueApp.MenuPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TI2._2_HueApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Menu Panel-->
+        <RelativePanel>
+            <TextBlock Name="TitleTextBlock"
+                       Text="LightsOut"
+                       FontSize="28"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       Margin="20,0,0,0" />
+        </RelativePanel>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Name="ServerIPTextBlock" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Server IP" />
+            <TextBox Name="ServerIPTextBox" Grid.Row="0" Grid.Column="1" Text="192.168.33.60" />
+
+            <TextBlock Name="UsernameTextBlock" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Username" />
+            <TextBox Name="UsernameTextBox" Text="mobileHueApp#WinPhoneBart" Grid.Row="1" Grid.Column="1" />
+
+            <TextBlock Name="RememberTextBlock" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Text="Remember?" />
+            <CheckBox Name="RememberCheckBox" Grid.Row="2" Grid.Column="1"  Margin="0,10,0,0" HorizontalAlignment="Left"></CheckBox>
+
+            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Margin="0,20,0,0">
+                <Button Name="LoginButton" Content="Log In"  Click="LoginButton_OnClick" Width="80"/>
+                <Button Name="RegisterButton" Content="Register" Click="RegisterButton_OnClick" Margin="20,0,0,0" />
+            </StackPanel>
+            
+
+
+        </Grid>
+    </Grid>
+</Page>

@@ -49,17 +49,11 @@
         </Grid.RowDefinitions>
         <!-- Menu Panel-->
         <RelativePanel>
-            <Button Name="MenuButton" 
-                    RelativePanel.AlignLeftWithPanel="True"
-                    FontFamily="Segoe MDL2 Assets"
-                    FontSize="28" 
-                    Content="&#xE09E;" 
-                    Click="MenuButton_Click" Background="#33000000" />
             <TextBlock Name="TitleTextBlock"
                        Text="LightsOut"
                        FontSize="28"
-                       RelativePanel.RightOf="MenuButton"
-                       Margin="73,0,-73,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                       RelativePanel.AlignLeftWithPanel="True"
+                       Margin="20,0,0,0" />
         </RelativePanel>
 
         <ScrollViewer VerticalScrollMode="Auto" Height="Auto" Grid.RowSpan="2">

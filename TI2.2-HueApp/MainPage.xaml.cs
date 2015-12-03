@@ -40,16 +40,8 @@ namespace TI2._2_HueApp
         {
             double h, s, v;
             ColorUtil.RGBtoHSV(255, 0, 0, out h, out s, out v);
-            Init();
-        }
-
-        private async void Init()
-        {
-            await Global.Instance.InitializeConnection();
             InitializeComponent();
         }
-        
-
 
         private void ListBox_Selection(object sender, SelectionChangedEventArgs e)
         {
