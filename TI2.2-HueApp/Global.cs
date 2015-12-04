@@ -12,6 +12,7 @@ namespace TI2._2_HueApp
     internal class Global
     {
         public static List<Light> Lights { get; private set; } = new List<Light>();
+        public static List<Setting> Settings { get; set; } = new List<Setting>();
 
         public static HueAPIConnector Connector { get; private set; }
 

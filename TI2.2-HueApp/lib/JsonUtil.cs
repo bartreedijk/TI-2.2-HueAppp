@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using TI2._2_HueApp.Enitity;
@@ -11,6 +13,28 @@ namespace TI2._2_HueApp.lib
 {
     public static class JsonUtil
     {
+        public static T Deserialize<T>(string json)
+        {
+            var _Bytes = Encoding.Unicode.GetBytes(json);
+            using (MemoryStream _Stream = new MemoryStream(_Bytes))
+            {
+                var _Serializer = new DataContractJsonSerializer(typeof(T));
+                return (T)_Serializer.ReadObject(_Stream);
+            }
+        }
+
+        public static string Serialize(object instance)
+        {
+            using (MemoryStream _Stream = new MemoryStream())
+            {
+                var _Serializer = new DataContractJsonSerializer(instance.GetType());
+                _Serializer.WriteObject(_Stream, instance);
+                _Stream.Position = 0;
+                using (StreamReader _Reader = new StreamReader(_Stream))
+                { return _Reader.ReadToEnd(); }
+            }
+        }
+
 
         public static List<Light> ConvertJsonToLights(string json)
         {
@@ -57,7 +81,17 @@ namespace TI2._2_HueApp.lib
             return lights;
         }
 
-        public static string CheckIfErrorInJson(string json)
+	public static void SaveSettings()
+        {
+            File.WriteAllText(@"Settings.json", Serialize(Global.Settings));
+        }
+
+        public static List<Setting> GetSettings()
+        {
+
+        }
+	
+	public static string CheckIfErrorInJson(string json)
         {
             JsonObject description = null;
             bool parseOk;
