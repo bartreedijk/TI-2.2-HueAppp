@@ -7,10 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FF2B2B2B">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" MinHeight="62" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <!-- Menu Panel-->
         <RelativePanel>
@@ -21,7 +21,7 @@
                        Margin="20,0,0,0" />
         </RelativePanel>
 
-        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="252" Margin="30,167,30,159" Width="300">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
-            
+
             <ComboBox Name="BridgeComboBox" Grid.ColumnSpan="2" Width="300"></ComboBox>
 
             <TextBlock Name="BridgeNameTextBlock" Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Text="Bridge Name" />
@@ -53,7 +53,7 @@
                 <Button Name="ConnectButton" Content="Connect"  Click="ConnectButton_OnClick" Width="80"/>
                 <Button Name="RegisterButton" Content="Register" Click="RegisterButton_OnClick" Margin="20,0,0,0" />
             </StackPanel>
-            
+
 
 
         </Grid>
