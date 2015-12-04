@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Web.Http;
+using TI2._2_HueApp.Enitity;
 
 namespace TI2._2_HueApp.Connector
 {
@@ -14,6 +15,13 @@ namespace TI2._2_HueApp.Connector
         public string Username { get; set; }
         public string Ip { get; set; }
         public int Port { get; set; }
+
+        public HueAPIConnector(Setting setting)
+        {
+            Username = setting.Username;
+            Ip = setting.IP;
+            Port = setting.Port;
+        }
 
         public HueAPIConnector(string username, string ip, int port)
         {
@@ -24,21 +32,21 @@ namespace TI2._2_HueApp.Connector
 
         public HueAPIConnector(string ip, int port)
         {
-            Username = "420b651cc9027734a8c4852b25a0ab";
+            //Username = "420b651cc9027734a8c4852b25a0ab";
             Ip = ip;
             Port = port;
         }
 
         public HueAPIConnector(string ip)
         {
-            Username = "420b651cc9027734a8c4852b25a0ab";
+            //Username = "420b651cc9027734a8c4852b25a0ab";
             Ip = ip;
             Port = 80;
         }
 
         public HueAPIConnector()
         {
-            Username = "420b651cc9027734a8c4852b25a0ab";
+            //Username = "420b651cc9027734a8c4852b25a0ab";
             Ip = "145.48.205.190";
             Port = 80;
         }
@@ -146,20 +154,14 @@ namespace TI2._2_HueApp.Connector
         {
             return await HttpGet($"lights/{lightIndex}/");
         }
-
-        public async Task<string> Register()
-        {
-            return await Register("mobileHueApp#WinPhoneBart");
-        }
-
-        public async Task<string> Register(string usernameIn)
+        
+        public async Task<string> Register(string deviceName)
         {
             //Register user
-            string jsonpart1 = "{\"devicetype\":\"";
-            // string jsonpart2 = "mobileHueApp#WinPhoneBart";
-            string jsonpart2 = usernameIn;
-            string jsonpart3 = "\"}";
-            string json = await HttpPost(jsonpart1 + jsonpart2 + jsonpart3);
+            string jsonIn = "{\"devicetype\":\"";
+            jsonIn += "LightsOut#" + deviceName;
+            jsonIn += "\"}";
+            string json = await HttpPost(jsonIn);
             JsonArray tempArray;
             bool parseOK = JsonArray.TryParse(json, out tempArray);
             if (parseOK)

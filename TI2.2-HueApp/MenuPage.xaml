@@ -38,7 +38,7 @@
             <ComboBox Name="BridgeComboBox" Grid.ColumnSpan="2" Width="300"></ComboBox>
 
             <TextBlock Name="BridgeNameTextBlock" Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Text="Bridge Name" />
-            <TextBox Name="BrdigeNameTextBox" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" Text="" />
+            <TextBox Name="BridgeNameTextBox" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" Text="" />
 
             <TextBlock Name="BridgeIpTextBlock" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Text="Bridge IP" />
             <TextBox Name="BrdigeIpTextBox" Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="192.168.33.60" />

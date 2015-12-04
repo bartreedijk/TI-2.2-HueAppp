@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TI2._2_HueApp.Enitity
 {
-    class Setting
+    public class Setting
     {
 
         public string Name { get; set; }

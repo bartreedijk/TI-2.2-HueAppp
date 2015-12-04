@@ -15,16 +15,18 @@ namespace TI2._2_HueApp
 
         public static HueAPIConnector Connector { get; private set; }
 
+        public static List<Setting> Settings { get; set; }
+
         public static void InitializeConnector(HueAPIConnector connector)
         {
             Connector = connector;
         }
 
-        public static async Task<bool> InitializeLightsAsync()
+        public static async Task<string> InitializeLightsAsync()
         {
             string json = await Connector.RetrieveLights();
-            Lights = JsonUtil.convertJsonToLights(json);
-            return !(json == "" || json == "[]");
+            Lights = JsonUtil.ConvertJsonToLights(json);
+            return json;
         }
     }
 }
