@@ -31,12 +31,17 @@ namespace TI2._2_HueApp
             this.InitializeComponent();
         }
 
+        private async void Connect()
+        {
+            
+        }
+
         private async void Register()
         {
             string username = "";
             try
             {
-                username = await Global.Instance.Connector.Register(UsernameTextBox.Text);
+                username = await Global.Instance.Connector.Register();
             }
             catch (NullReferenceException e)
             {
@@ -46,13 +51,13 @@ namespace TI2._2_HueApp
             if (username != "")
             {
                 RegisterButton.Content = "Registered!";
-                UsernameTextBox.Text = username;
             }
             else
             {
                 RegisterButton.Content = "Registration failed!";
                 _registerbuttonClickable = false;
             }
+                
         }
 
         private async void Login()
@@ -64,7 +69,7 @@ namespace TI2._2_HueApp
         private void RegisterButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!_registerbuttonClickable) return;
-            Global.Instance.Connector.IP = ServerIPTextBox.Text;
+            //Global.Instance.Connector.IP = ServerIpTextBox.Text;
             Register();
             _registerbuttonClickable = false;
         }
@@ -73,9 +78,14 @@ namespace TI2._2_HueApp
         {
             if (!_loginbuttonClickable) return;
             if (_registerbuttonClickable) return;
-            Global.Instance.Connector.IP = ServerIPTextBox.Text;
+            //Global.Instance.Connector.IP = ServerIpTextBox.Text;
             Login();
             _loginbuttonClickable = false;
+        }
+
+        private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
