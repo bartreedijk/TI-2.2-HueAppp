@@ -45,7 +45,7 @@
             <TextBox Name="BridgeIpTextBox" Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="192.168.33.60" />
 
             <TextBlock Name="BridgePortTextBlock" Grid.Row="3" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Text="Bridge Port" />
-            <TextBox Name=BridgePortTextBox" Grid.Row="3" Grid.Column="1" Margin="0,10,0,0" Text="80" TextChanged="textBoxNumeric_TextChanged" />
+            <TextBox Name="BridgePortTextBox" Grid.Row="3" Grid.Column="1" Margin="0,10,0,0" Text="80" TextChanged="textBoxNumeric_TextChanged" />
 
             <TextBlock Name="RememberTextBlock" Grid.Row="4" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Text="Remember?" />
             <CheckBox Name="RememberCheckBox" Grid.Row="4" Grid.Column="1"  Margin="0,10,0,0" HorizontalAlignment="Left" />

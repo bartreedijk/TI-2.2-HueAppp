@@ -63,8 +63,7 @@ namespace TI2._2_HueApp
 
         private async void Connect()
         {
-            //bool success = CheckConnectorActive();
-            bool success = true;
+            bool success = CheckConnectorActive();
             Global.InitializeConnector(new HueAPIConnector());
             Global.Connector.Username = "newdeveloper";
 
@@ -149,7 +148,7 @@ namespace TI2._2_HueApp
                 RegisterButton.Content = "Registered!";
                 if ((bool)RememberCheckBox.IsChecked)
                 {
-                    Global.Settings.Add(new Enitity.Setting(NameTextBox.Text, deviceName, BridgeIpTextBox.Text, Convert.ToInt32(ServerPortTextBox.Text)));
+                    Global.Settings.Add(new Enitity.Setting(BridgeNameTextBox.Text, deviceName, BridgeIpTextBox.Text, Convert.ToInt32(BridgePortTextBox.Text)));
                 }
             }
             else

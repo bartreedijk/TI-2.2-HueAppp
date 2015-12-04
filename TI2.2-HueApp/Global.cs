@@ -16,8 +16,6 @@ namespace TI2._2_HueApp
 
         public static HueAPIConnector Connector { get; private set; }
 
-        public static List<Setting> Settings { get; set; }
-
         public static void InitializeConnector(HueAPIConnector connector)
         {
             Connector = connector;
