@@ -28,7 +28,17 @@ namespace TI2._2_HueApp
 
         public MenuPage()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();/*
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.System.Profile.HardwareIdentification"))
+            {
+                Global.Settings.Add(new Enitity.Setting("setting1", "richard#" + Windows.Networking.Proximity.PeerFinder.DisplayName, "127.0.0.1", 80));
+                Global.Settings.Add(new Enitity.Setting("setting2", "bart#" + Windows.Networking.Proximity.PeerFinder.DisplayName, "127.0.0.1", 80));
+            }*/
+
+
+            BridgeComboBox.ItemsSource = Global.Settings;
+            BridgeComboBox.DisplayMemberPath = "Name";
+
         }
 
         private async void Connect()
@@ -36,12 +46,43 @@ namespace TI2._2_HueApp
             
         }
 
+        private void textBoxNumeric_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsDigit(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+        }
+
         private async void Register()
         {
             string username = "";
+            string deviceName = "";
+
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.System.Profile.HardwareIdentification"))
+            {
+                deviceName = Windows.Networking.Proximity.PeerFinder.DisplayName;
+            }
+            else
+            {
+                deviceName = "UnownDevice";
+            }
+
             try
             {
-                username = await Global.Connector.Register();
+                username = await Global.Connector.Register(deviceName);
             }
             catch (NullReferenceException e)
             {
@@ -51,6 +92,10 @@ namespace TI2._2_HueApp
             if (username != "")
             {
                 RegisterButton.Content = "Registered!";
+                if ((bool)RememberCheckBox.IsChecked)
+                {
+                    Global.Settings.Add(new Enitity.Setting(NameTextBox.Text, deviceName, BridgeIpTextBox.Text, Convert.ToInt32(ServerPortTextBox.Text)));
+                }
             }
             else
             {
