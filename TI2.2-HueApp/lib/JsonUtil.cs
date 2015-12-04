@@ -86,8 +86,15 @@ namespace TI2._2_HueApp.lib
             File.WriteAllText(@"Settings.json", Serialize(Global.Settings));
         }
 
-        public static List<Setting> GetSettings()
+        public static void GetSettings()
         {
+            JsonArray array;
+            JsonArray.TryParse(File.ReadAllText(@"Settings.json"), out array);
+            
+            foreach(Setting s in array)
+            {
+                Global.Settings.Add(s);
+            }
 
         }
 	

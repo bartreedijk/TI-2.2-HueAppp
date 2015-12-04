@@ -9,8 +9,8 @@
 
     <Grid Background="#FF2B2B2B">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" MinHeight="62" />
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- Menu Panel-->
         <RelativePanel Background="Black" Margin="0,0,0,10">
@@ -21,8 +21,9 @@
                        Margin="20,6,0.667,-5.333" />
         </RelativePanel>
 
-        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="252" Margin="30,167,30,159" Width="300">
+        <Grid Grid.Row="1" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="300">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
