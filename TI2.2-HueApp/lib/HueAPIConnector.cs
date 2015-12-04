@@ -12,12 +12,35 @@ namespace TI2._2_HueApp.Connector
     public class HueAPIConnector
     {
         public string Username { get; set; }
-        public string IP { get; set; }
+        public string Ip { get; set; }
         public int Port { get; set; }
+
+        public HueAPIConnector(string username, string ip, int port)
+        {
+            Username = username;
+            Ip = ip;
+            Port = port;
+        }
+
+        public HueAPIConnector(string ip, int port)
+        {
+            Username = "420b651cc9027734a8c4852b25a0ab";
+            Ip = ip;
+            Port = port;
+        }
+
+        public HueAPIConnector(string ip)
+        {
+            Username = "420b651cc9027734a8c4852b25a0ab";
+            Ip = ip;
+            Port = 80;
+        }
 
         public HueAPIConnector()
         {
-            RetrieveSettings();
+            Username = "420b651cc9027734a8c4852b25a0ab";
+            Ip = "145.48.205.190";
+            Port = 80;
         }
 
         private async Task<string> HttpPost(string json)
@@ -34,7 +57,7 @@ namespace TI2._2_HueApp.Connector
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri($"http://{IP}:{Port}/api/{relativeUri}");
+                Uri uri = new Uri($"http://{Ip}:{Port}/api/{relativeUri}");
                 HttpStringContent httpContent = new HttpStringContent(json);
                 HttpResponseMessage response = await client.PostAsync(uri, httpContent).AsTask(cts.Token);
 
@@ -64,7 +87,7 @@ namespace TI2._2_HueApp.Connector
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri($"http://{IP}:{Port}/api/{Username}/{relativeUri}");
+                Uri uri = new Uri($"http://{Ip}:{Port}/api/{Username}/{relativeUri}");
                 HttpStringContent httpContent = new HttpStringContent(json);
                 HttpResponseMessage response = await client.PutAsync(uri, httpContent).AsTask(cts.Token);
 
@@ -94,7 +117,7 @@ namespace TI2._2_HueApp.Connector
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri($"http://{IP}:{Port}/api/{Username}/{relativeUri}");
+                Uri uri = new Uri($"http://{Ip}:{Port}/api/{Username}/{relativeUri}");
                 HttpResponseMessage response = await client.GetAsync(uri).AsTask(cts.Token);
 
                 if (!response.IsSuccessStatusCode)
@@ -112,15 +135,6 @@ namespace TI2._2_HueApp.Connector
             {
                 return string.Empty;
             }
-        }
-
-        public void RetrieveSettings()
-        {
-            //IP = "169.254.80.80"; // emulator
-            //IP = "145.48.205.190"; // echte bridge van school
-            //IP = "127.0.0.1"; // local device
-            //IP = "145.102.68.124";
-            Port = 80;
         }
 
         public async Task<string> RetrieveLights()

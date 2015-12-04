@@ -11,26 +11,20 @@ namespace TI2._2_HueApp
 {
     internal class Global
     {
-        public List<Light> Lights { get; private set; }
+        public static List<Light> Lights { get; private set; } = new List<Light>();
 
-        public HueAPIConnector Connector { get; }
+        public static HueAPIConnector Connector { get; private set; }
 
-        private static Global _instance;
-
-        public static Global Instance => _instance ?? (_instance = new Global());
-
-        private Global()
+        public static void InitializeConnector(HueAPIConnector connector)
         {
-            Lights = new List<Light>();
-            Connector = new HueAPIConnector();
+            Connector = connector;
         }
 
-        public async Task<bool> InitializeConnection()
+        public static async Task<bool> InitializeLightsAsync()
         {
             string json = await Connector.RetrieveLights();
             Lights = JsonUtil.convertJsonToLights(json);
             return !(json == "" || json == "[]");
         }
-
     }
 }

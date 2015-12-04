@@ -27,14 +27,14 @@ namespace TI2._2_HueApp
     {
         public List<Light> Lights
         {
-            get { return Global.Instance.Lights; }
+            get { return Global.Lights; }
         }
 
         private bool IsLoaded;
 
         public HueAPIConnector Connector
         {
-            get { return Global.Instance.Connector; }
+            get { return Global.Connector; }
         }
         public MainPage()
         {
@@ -149,7 +149,7 @@ namespace TI2._2_HueApp
             
             ToggleSwitch OnOff = sender as ToggleSwitch;
             Light light = OnOff.DataContext as Light;
-            Light LightOut = Lights.Where(lightInternal => lightInternal.ID == light.ID).FirstOrDefault();
+            Light LightOut = Lights.FirstOrDefault(lightInternal => lightInternal.ID == light.ID);
             if (!IsLoaded)
                 return;
             light.State = !light.State;

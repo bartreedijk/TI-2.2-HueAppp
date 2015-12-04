@@ -62,7 +62,7 @@ namespace TI2._2_HueApp
 
         private async void Login()
         {
-            await Global.Instance.InitializeConnection();
+            await Global.InitializeLightsAsync();
             this.Frame.Navigate(typeof (MainPage));
         }
 
