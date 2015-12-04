@@ -9,8 +9,8 @@
 
     <Grid Background="#FF2B2B2B">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" MinHeight="62" />
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- Menu Panel-->
         <RelativePanel Background="Black" Margin="0,0,0,10">
