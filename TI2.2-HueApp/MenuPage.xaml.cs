@@ -41,7 +41,7 @@ namespace TI2._2_HueApp
             string username = "";
             try
             {
-                username = await Global.Instance.Connector.Register();
+                username = await Global.Connector.Register();
             }
             catch (NullReferenceException e)
             {
