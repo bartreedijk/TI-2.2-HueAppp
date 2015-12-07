@@ -27,5 +27,7 @@ namespace TI2._2_HueApp
             Lights = JsonUtil.ConvertJsonToLights(json);
             return json;
         }
+
+        
     }
 }

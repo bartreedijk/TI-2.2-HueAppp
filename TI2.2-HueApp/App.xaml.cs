@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TI2._2_HueApp.Connector;
 
 namespace TI2._2_HueApp
 {
@@ -33,8 +34,10 @@ namespace TI2._2_HueApp
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
+            Global.InitializeConnector(new HueAPIConnector());
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
         }
 
         
