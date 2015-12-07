@@ -13,29 +13,7 @@ namespace TI2._2_HueApp.lib
 {
     public class JsonUtil
     {
-        public static T Deserialize<T>(string json)
-        {
-            var _Bytes = Encoding.Unicode.GetBytes(json);
-            using (MemoryStream _Stream = new MemoryStream(_Bytes))
-            {
-                var _Serializer = new DataContractJsonSerializer(typeof(T));
-                return (T)_Serializer.ReadObject(_Stream);
-            }
-        }
-
-        public static string Serialize(object instance)
-        {
-            using (MemoryStream _Stream = new MemoryStream())
-            {
-                var _Serializer = new DataContractJsonSerializer(instance.GetType());
-                _Serializer.WriteObject(_Stream, instance);
-                _Stream.Position = 0;
-                using (StreamReader _Reader = new StreamReader(_Stream))
-                { return _Reader.ReadToEnd(); }
-            }
-        }
-
-
+       
         public static List<Light> convertJsonToLights(string json)
         {
             List<Light> lights = new List<Light>();
@@ -82,19 +60,34 @@ namespace TI2._2_HueApp.lib
         }
 
 
+        private static string[] Serialize(List<Setting> settingList)
+        {
+            string settingListJSON = "";
+
+            foreach(Setting s in settingList)
+            {
+                settingListJSON += s.toJson() + "|";
+            }
+            return settingListJSON.Split('|');
+        }
+
+
         public static void SaveSettings()
         {
-            File.WriteAllText(@"Settings.json", Serialize(Global.Settings));
+            File.WriteAllLines(@"Settings.txt", Serialize(Global.Settings));
         }
 
         public static void GetSettings()
         {
-            JsonArray array;
-            JsonArray.TryParse(File.ReadAllText(@"Settings.json"), out array);
-            
-            foreach(Setting s in array)
+            string[] lines = File.ReadAllLines(@"Settings.txt");
+
+            foreach (string line in lines)
             {
-                Global.Settings.Add(s);
+                if (line != "")
+                {
+                    string[] props = line.Split(',');
+                    Global.Settings.Add(new Setting(props));
+                }
             }
 
         }

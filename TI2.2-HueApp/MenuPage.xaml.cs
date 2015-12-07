@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.ServiceModel.Security.Tokens;
+using TI2._2_HueApp.lib;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,13 +29,16 @@ namespace TI2._2_HueApp
 
         public MenuPage()
         {
-            this.InitializeComponent();/*
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.System.Profile.HardwareIdentification"))
             {
-                Global.Settings.Add(new Enitity.Setting("setting1", "richard#" + Windows.Networking.Proximity.PeerFinder.DisplayName, "127.0.0.1", 80));
-                Global.Settings.Add(new Enitity.Setting("setting2", "bart#" + Windows.Networking.Proximity.PeerFinder.DisplayName, "127.0.0.1", 80));
-            }*/
-
+                Global.Settings.Add(new Enitity.Setting("Lampen Lokaal", Windows.Networking.Proximity.PeerFinder.DisplayName, "145.048.205.190", 80));
+                Global.Settings.Add(new Enitity.Setting("Emulator", Windows.Networking.Proximity.PeerFinder.DisplayName, "127.0.0.1", 80));
+                JsonUtil.SaveSettings();
+            }
+            this.InitializeComponent();
+            Global.Settings.Clear();
+            JsonUtil.GetSettings();
+        
 
             BridgeComboBox.ItemsSource = Global.Settings;
             BridgeComboBox.DisplayMemberPath = "Name";

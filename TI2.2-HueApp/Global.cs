@@ -19,6 +19,8 @@ namespace TI2._2_HueApp
         public static void InitializeConnector(HueAPIConnector connector)
         {
             Connector = connector;
+
+            JsonUtil.GetSettings();
         }
 
         public static async Task<bool> InitializeLightsAsync()
@@ -27,5 +29,9 @@ namespace TI2._2_HueApp
             Lights = JsonUtil.convertJsonToLights(json);
             return !(json == "" || json == "[]");
         }
+
+
+
+
     }
 }
